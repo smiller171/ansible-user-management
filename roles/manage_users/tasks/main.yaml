@@ -1,0 +1,4 @@
+--- #setup users
+- include: sudoers.yaml #allow users to have nopasswd sudo access
+- include: add_users.yaml #add users
+- include: delete_users.yaml #ensure that any users on the banned list do not exist
