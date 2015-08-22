@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: Scott Miller
+  description: Manage Unix users and keys
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Linux
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: RHEL
+    versions:
+    - all
+  - name: CentOS
+    versions:
+    - all
+  - name: Amazon Linux
+    versions:
+    - all
+  - name: Unix
+    versions:
+    - all
+  categories:
+  - system
