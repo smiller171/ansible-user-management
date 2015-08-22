@@ -27,17 +27,17 @@ script:
   && (echo 'Idempotence test: pass' && exit 0)
   || (echo 'Idempotence test: fail' && exit 1)
 # ensure foo user exists
-getent passwd foo > /dev/null
+- getent passwd foo > /dev/null
 # ensure foo user has the correct groups
-sudo groups foo | grep sudo
-sudo groups foo | grep adm
-sudo groups foo | grep dialout
-sudo groups foo | grep cdrom
-sudo groups foo | grep floppy
-sudo groups foo | grep audio
-sudo groups foo | grep video
-sudo groups foo | grep plugdev
-sudo groups foo | grep netdev
+- sudo groups foo | grep sudo
+- sudo groups foo | grep adm
+- sudo groups foo | grep dialout
+- sudo groups foo | grep cdrom
+- sudo groups foo | grep floppy
+- sudo groups foo | grep video
+- sudo groups foo | grep audio
+- sudo groups foo | grep plugdev
+- sudo groups foo | grep netdev
 # ensure foobar user was deleted
 - >
   - ansible -i inventory localhost -m user -a "name=foobar state=absent" --sudo
