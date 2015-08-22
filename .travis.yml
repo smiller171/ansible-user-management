@@ -10,24 +10,26 @@ install:
 # Install Ansible.
 - pip install ansible
 
-# Add ansible.cfg to pick up roles path.
-- "printf '[defaults]\nroles_path = ../' > ansible.cfg"
-
-script:
 # Create foobar user to ensure deletion works
 - ansible -i inventory localhost -m user -a "name=foobar" --sudo
+
+script:
 # Check the role/playbook's syntax.
-- ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+- ansible-playbook -i inventory test.yml --syntax-check
+
 # Run the role/playbook with ansible-playbook.
-- "ansible-playbook -i tests/inventory tests/test.yml"
+- "ansible-playbook -i inventory test.yml"
+
 # Run the role/playbook again, checking to make sure it's idempotent.
 - >
   ansible-playbook -i tests/inventory tests/test.yml
   | grep -q 'changed=0.*failed=0'
   && (echo 'Idempotence test: pass' && exit 0)
   || (echo 'Idempotence test: fail' && exit 1)
+
 # ensure foo user exists
 - getent passwd foo > /dev/null
+
 # ensure foo user has the correct groups
 - sudo groups foo | grep sudo
 - sudo groups foo | grep adm
@@ -38,6 +40,7 @@ script:
 - sudo groups foo | grep audio
 - sudo groups foo | grep plugdev
 - sudo groups foo | grep netdev
+
 # ensure foobar user was deleted
 - >
   - ansible -i inventory localhost -m user -a "name=foobar state=absent" --sudo
