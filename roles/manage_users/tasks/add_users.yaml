@@ -1,12 +1,12 @@
---- #create accounts for all required users
-- name: create accounts for sudo users
+---
+- name: create accounts for users
   user:
     name: "{{item.name}}"
-    groups: "{{sudo_groups}}"
+    groups: "{{user_groups}}"
     append: no
-    shell: /bin/bash
+    shell: "{{shell}}"
     state: present
-  with_items: sudo_users
+  with_items: users
 
 - name: create accounts for non-sudo users
   user:
