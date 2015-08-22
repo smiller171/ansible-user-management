@@ -1,5 +1,6 @@
 ---
 # Users with sudo access and their keys. Each user can have multiple keys
+shell: /bin/bash
 manage_users_allowed:
   - name: foo
     authorized:

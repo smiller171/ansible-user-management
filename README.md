@@ -12,6 +12,7 @@ Set up sudoers file to allow passwordless sudo as passwords will not be set
 
 Available variables are listed below, along with default values:
 
+    shell: /bin/bash
     manage_users_allowed:
       - name: foo
         authorized:
