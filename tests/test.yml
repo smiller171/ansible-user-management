@@ -2,4 +2,4 @@
 - hosts: localhost
   sudo: yes
   roles:
-  - manage_users
+  - ansible-user-management
