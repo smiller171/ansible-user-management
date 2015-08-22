@@ -1,7 +1,0 @@
----
-- hosts: "{{hosts}}"
-  sudo: yes
-  roles:
-  - manage_users
-  vars:
-  - hosts: localhost

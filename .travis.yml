@@ -1,0 +1,48 @@
+---
+language: python
+python: "2.7"
+
+before_install:
+# Make sure everything's up to date.
+- sudo apt-get update -qq
+
+install:
+# Install Ansible.
+- pip install ansible
+
+# Create foobar user to ensure deletion works
+- ansible -i inventory localhost -m user -a "name=foobar" --sudo
+
+script:
+# Check the role/playbook's syntax.
+- ansible-playbook -i inventory test.yml --syntax-check
+
+# Run the role/playbook with ansible-playbook.
+- "ansible-playbook -i inventory test.yml"
+
+# Run the role/playbook again, checking to make sure it's idempotent.
+- >
+  ansible-playbook -i inventory test.yml
+  | grep -q 'changed=0.*failed=0'
+  && (echo 'Idempotence test: pass' && exit 0)
+  || (echo 'Idempotence test: fail' && exit 1)
+
+# ensure foo user exists
+- getent passwd foo > /dev/null
+
+# ensure foo user has the correct groups
+- sudo groups foo | grep sudo
+- sudo groups foo | grep adm
+- sudo groups foo | grep dialout
+- sudo groups foo | grep cdrom
+- sudo groups foo | grep floppy
+- sudo groups foo | grep video
+- sudo groups foo | grep audio
+- sudo groups foo | grep plugdev
+
+# ensure foobar user was deleted
+- >
+  ansible -i inventory localhost -m user -a "name=foobar state=absent" --sudo
+  | grep -q '"changed": false'
+  && (echo 'Userdel test: pass' && exit 0)
+  || (echo 'Userdel test: fail' && exit 1)

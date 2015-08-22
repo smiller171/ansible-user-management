@@ -12,6 +12,7 @@ Set up sudoers file to allow passwordless sudo as passwords will not be set
 
 Available variables are listed below, along with default values:
 
+    shell: /bin/bash
     manage_users_allowed:
       - name: foo
         authorized:
@@ -20,7 +21,7 @@ Available variables are listed below, along with default values:
     manage_users_unauthorized:
       - foobar
 
-    manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev,netdev"
+    manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev"
 
 ## Example Playbook
 
@@ -38,7 +39,7 @@ Available variables are listed below, along with default values:
       - manage_users_unauthorized:
         - foobar
 
-      - manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev,netdev"
+      - manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev"
 
 ## License
 
