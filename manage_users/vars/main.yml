@@ -11,4 +11,4 @@ manage_users_unauthorized:
   - foobar
 
 # list of groups that sudo_users should be a member of
-manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev,netdev"
+manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev"

@@ -21,7 +21,7 @@ Available variables are listed below, along with default values:
     manage_users_unauthorized:
       - foobar
 
-    manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev,netdev"
+    manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev"
 
 ## Example Playbook
 
@@ -39,7 +39,7 @@ Available variables are listed below, along with default values:
       - manage_users_unauthorized:
         - foobar
 
-      - manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev,netdev"
+      - manage_users_groups: "sudo,adm,dialout,cdrom,floppy,audio,video,plugdev"
 
 ## License
 
