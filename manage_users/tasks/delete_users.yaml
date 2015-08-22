@@ -3,4 +3,4 @@
   user:
     name: "{{item}}"
     state: absent
-  with_items: manage_users_unauthorized
+  with_items: manage_users_unauthorized2
