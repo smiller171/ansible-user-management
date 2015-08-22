@@ -1,5 +1,5 @@
-# README.md
 # Ansible Role: manage_users
+[![Build Status](https://travis-ci.org/smiller171/ansible-user-management.svg?branch=master)](https://travis-ci.org/smiller171/ansible-user-management)
 
 An Ansible role that sets up users and their ssh keys on unix-based systems  
 Users can have multiple keys (add each as a list item)  
