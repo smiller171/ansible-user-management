@@ -1,6 +1,0 @@
---- #Replace existing sudo file with one that allows for nopasswd sudo access.
-- name: replace sudoers file
-  copy:
-    src: sudoers #find sudoers in files dir
-    dest: /etc/sudoers
-    validate: 'visudo -cf %s' #pass through visudo for validation
