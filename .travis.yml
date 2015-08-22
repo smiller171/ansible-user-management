@@ -42,7 +42,7 @@ script:
 
 # ensure foobar user was deleted
 - >
-  - ansible -i inventory localhost -m user -a "name=foobar state=absent" --sudo
+  ansible -i inventory localhost -m user -a "name=foobar state=absent" --sudo
   | grep -q '"changed": false'
-  && (echo 'Idempotence test: pass' && exit 0)
-  || (echo 'Idempotence test: fail' && exit 1)
+  && (echo 'Userdel test: pass' && exit 0)
+  || (echo 'Userdel test: fail' && exit 1)
