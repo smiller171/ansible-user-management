@@ -1,14 +1,16 @@
 ---
+dependencies: []
+
 galaxy_info:
-  author: Scott Miller
+  author: smiller171
   description: Manage Unix users and keys
-  license: MIT
+  license: "license (MIT)"
   min_ansible_version: 1.9
   platforms:
   - name: EL
     versions:
     - all
-  - name: Linux
+  - name: Debian
     versions:
     - all
   - name: Ubuntu
@@ -18,12 +20,6 @@ galaxy_info:
     versions:
     - all
   - name: CentOS
-    versions:
-    - all
-  - name: Amazon Linux
-    versions:
-    - all
-  - name: Unix
     versions:
     - all
   categories:
