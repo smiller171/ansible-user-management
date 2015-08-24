@@ -36,6 +36,8 @@ script:
 # ensure foo user exists
 - getent passwd foo > /dev/null
 
+# TODO: check for user key
+
 # ensure foo user has the correct groups
 - sudo groups foo | grep sudo
 - sudo groups foo | grep adm
