@@ -58,7 +58,7 @@ script:
   || (echo 'rmkey test: fail' && exit 1)
 
 # Check to see if second key was removed
-- sudo cat /home/foo/.ssh/authorized_keys | grep 'name@domain.com'
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
 - >
   sudo cat /home/foo/.ssh/authorized_keys
   | grep -q 'smiller@domain.com' && (exit 1) || (exit 0)
