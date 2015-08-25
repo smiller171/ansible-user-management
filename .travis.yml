@@ -43,10 +43,11 @@ script:
 - >
   ansible-playbook -i tests/inventory tests/test.yml -e '@tests/multikey.yml'
   | grep -q 'changed=1.*failed=0'
-  && (echo 'Idempotence test: pass' && exit 0)
-  || (echo 'Idempotence test: fail' && exit 1)
+  && (echo 'addkey test: pass' && exit 0)
+  || (echo 'addkey test: fail' && exit 1)
 
 # Check to see if foo user has correct keys
+- sudo cat /home/foo/.ssh/authorized_keys
 - sudo cat /home/foo/.ssh/authorized_keys | grep 'name@domain.com'
 - sudo cat /home/foo/.ssh/authorized_keys | grep 'smiller@domain.com'
 
@@ -54,8 +55,8 @@ script:
 - >
   ansible-playbook -i tests/inventory tests/test.yml
   | grep -q 'changed=1.*failed=0'
-  && (echo 'Idempotence test: pass' && exit 0)
-  || (echo 'Idempotence test: fail' && exit 1)
+  && (echo 'rmkey test: pass' && exit 0)
+  || (echo 'rmkey test: fail' && exit 1)
 
 # ensure foo user has the correct groups
 - sudo groups foo | grep sudo
