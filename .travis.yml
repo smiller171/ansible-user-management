@@ -37,7 +37,7 @@ script:
 - getent passwd foo > /dev/null
 
 # Check to see if foo user has correct key
-- cat /home/foo/.ssh/authorized_keys | grep 'name@domain.com'
+- sudo cat /home/foo/.ssh/authorized_keys | grep 'name@domain.com'
 
 # Test adding a second key
 - >
@@ -47,8 +47,8 @@ script:
   || (echo 'Idempotence test: fail' && exit 1)
 
 # Check to see if foo user has correct keys
-- cat /home/foo/.ssh/authorized_keys | grep 'name@domain.com'
-- cat /home/foo/.ssh/authorized_keys | grep 'smiller@domain.com'
+- sudo cat /home/foo/.ssh/authorized_keys | grep 'name@domain.com'
+- sudo cat /home/foo/.ssh/authorized_keys | grep 'smiller@domain.com'
 
 # Test removing a second key
 - >
