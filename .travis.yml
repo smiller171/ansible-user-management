@@ -36,7 +36,26 @@ script:
 # ensure foo user exists
 - getent passwd foo > /dev/null
 
-# TODO: check for user key
+# Check to see if foo user has correct key
+- cat /home/foo/.ssh.authorized_keys | grep 'name@domain.com'
+
+# Test adding a second key
+- >
+  ansible-playbook -i tests/inventory tests/test.yml -e '@tests/multikey.yml'
+  | grep -q 'changed=1.*failed=0'
+  && (echo 'Idempotence test: pass' && exit 0)
+  || (echo 'Idempotence test: fail' && exit 1)
+
+# Check to see if foo user has correct keys
+- cat /home/foo/.ssh.authorized_keys | grep 'name@domain.com'
+- cat /home/foo/.ssh.authorized_keys | grep 'smiller@domain.com'
+
+# Test removing a second key
+- >
+  ansible-playbook -i tests/inventory tests/test.yml
+  | grep -q 'changed=1.*failed=0'
+  && (echo 'Idempotence test: pass' && exit 0)
+  || (echo 'Idempotence test: fail' && exit 1)
 
 # ensure foo user has the correct groups
 - sudo groups foo | grep sudo
