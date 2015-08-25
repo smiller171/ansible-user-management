@@ -5,10 +5,6 @@ branches:
 language: python
 python: "2.7"
 
-before_install:
-# Make sure everything's up to date.
-- sudo apt-get update -qq
-
 install:
 # Install Ansible.
 - pip install ansible
@@ -36,7 +32,32 @@ script:
 # ensure foo user exists
 - getent passwd foo > /dev/null
 
-# TODO: check for user key
+# Check to see if foo user has correct key
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
+
+# Test adding a second key
+- >
+  ansible-playbook -i tests/inventory tests/test.yml -e '@tests/multikey.yml'
+  | grep -q 'changed=1.*failed=0'
+  && (echo 'addkey test: pass' && exit 0)
+  || (echo 'addkey test: fail' && exit 1)
+
+# Check to see if foo user has correct keys
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'smiller@domain.com'
+
+# Test removing a second key
+- >
+  ansible-playbook -i tests/inventory tests/test.yml
+  | grep -q 'changed=1.*failed=0'
+  && (echo 'rmkey test: pass' && exit 0)
+  || (echo 'rmkey test: fail' && exit 1)
+
+# Check to see if second key was removed
+- sudo cat /home/foo/.ssh/authorized_keys | grep -q 'name@domain.com'
+- >
+  sudo cat /home/foo/.ssh/authorized_keys
+  | grep -q 'smiller@domain.com' && (exit 1) || (exit 0)
 
 # ensure foo user has the correct groups
 - sudo groups foo | grep sudo
