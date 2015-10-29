@@ -1,7 +1,10 @@
 # Ansible Role: manage_users
 
-[![Join the chat at https://gitter.im/smiller171/ansible-user-management](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/smiller171/ansible-user-management?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/smiller171/ansible-user-management.svg?branch=master)](https://travis-ci.org/smiller171/ansible-user-management)
+
+[![Join the chat at https://gitter.im/smiller171/ansible-user-management](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/smiller171/ansible-user-management?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+<a href="https://zenhub.io"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 An Ansible role that sets up users and their ssh keys on unix-based systems  
 Users can have multiple keys (add each as a list item)  
