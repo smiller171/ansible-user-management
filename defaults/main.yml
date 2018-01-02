@@ -2,7 +2,7 @@
 # Users with sudo access and their keys. Each user can have multiple keys
 shell: /bin/bash
 manage_users_allowed:
-  - name: foo
+  - username: foo
     authorized:
     - "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAlPYybp3CWDzRPo0uF/woyqkfhpZK2T7zn16z+fGYlRQl6gXATIUB4JYfr9pfD+SOW2T4X78P+/h1o4QPCwoesLacaFEFGwUb+SzhVVm6B6q4WMAiJWD6OVXh+SVVvD9rdcz5RMVLqQngrRqBlj4kBIMQ3S8h1cCESbR2P6jszgFj0I6p3tQCpo9yjcVwLqvWFKJgzEm2E2wV/gmrc0PhVRP2guIRN4p6M2ZyIPprdZ6PA8m7Rs4yN3jQ/0alrQ23ECCU4lHoVG9fwvLIq1vh4ikPcUrdA8sSHTE1pkpzvrTv7FtkuUcBrDMedFE7E8dB9pPS+vXIBWVUYJhp9WzVkQ== name@domain.com"
 

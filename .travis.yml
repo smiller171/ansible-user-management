@@ -20,7 +20,7 @@ install:
 - pip install ansible
 
 # Create foobar user to ensure deletion works
-- ansible -i tests/inventory localhost -m user -a "name=foobar" --sudo
+- ansible -i tests/inventory localhost -m user -a "name=foobar" --become
 
 # Add ansible.cfg to pick up roles path.
 - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
@@ -81,7 +81,7 @@ script:
 
 # ensure foobar user was deleted
 - >
-  ansible -i tests/inventory localhost -m user -a "name=foobar state=absent" --sudo
+  ansible -i tests/inventory localhost -m user -a "name=foobar state=absent" --become
   | grep -q '"changed": false'
   && (echo 'Userdel test: pass' && exit 0)
   || (echo 'Userdel test: fail' && exit 1)

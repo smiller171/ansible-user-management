@@ -1,18 +1,18 @@
 ---
 - name: make sure users exist
   user:
-    name: "{{item.name}}"
+    name: "{{item.username}}"
     groups: "{{manage_users_groups}}"
     append: no
     shell: "{{shell}}"
     state: present
-  with_items: manage_users_allowed
+  with_items: "{{manage_users_allowed}}"
 
 - name: set keys for accounts
   authorized_key:
-    user: "{{item.0.name}}"
+    user: "{{item.0.username}}"
     key: "{{item.1}}"
     exclusive: yes
   with_subelements:
-    - manage_users_allowed
+    - "{{manage_users_allowed}}"
     - authorized
