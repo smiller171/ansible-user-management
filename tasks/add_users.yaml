@@ -6,7 +6,7 @@
     append: no
     shell: "{{shell}}"
     state: present
-  with_items: manage_users_allowed
+  with_items: "{{manage_users_allowed}}"
 
 - name: set keys for accounts
   authorized_key:
@@ -14,5 +14,5 @@
     key: "{{item.1}}"
     exclusive: yes
   with_subelements:
-    - manage_users_allowed
+    - "{{manage_users_allowed}}"
     - authorized
